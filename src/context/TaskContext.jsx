@@ -60,12 +60,39 @@ export const TasksProvider = ({children}) => {
         };
     };
 
-    //const deleteTask = asyn ()
+    const deleteTask = async (id) => {
+        try{
+            const response = await fetch(todosURL + `/${id}`,{method:"DELETE"})
+
+            if (!response.ok){
+                console.log("Error");
+            }
+            const data = await response.json();
+            dispatch({type:"DELETE_TASK", payload: id});
+        }catch(error){
+            console.log("Error al eliminar tarea: ", error)
+        }
+    };
+
+    const updateTask = async(id, updatedTask) =>{
+        try {
+            const response = await fetch(todosURL + `/${updatedTask.id}`,
+                updatedTask
+            );
+            if(!response.ok){
+                console.log("Error");
+            }
+            const data = await response.json();
+            dispatch({ type: "UPDATE_TASK", payload: data });
+          } catch (error) {
+            console.error("Error al actualizar tarea: ", error);
+          }
+        };
 
 
     
   return (
-    <TasksContext.Provider value={{ tasks, addTask}}>{/*, deleteTask, updateTask  */}
+    <TasksContext.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
       {children}
     </TasksContext.Provider>
   );
