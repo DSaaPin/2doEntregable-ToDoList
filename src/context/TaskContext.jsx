@@ -1,5 +1,5 @@
 import { createContext,useContext, useReducer,useEffect } from "react";
-//no usaré axios por ahora
+import axios from "axios";
 
 const TasksContext = createContext();
 
@@ -12,6 +12,9 @@ const tasksReducer = (state, action) => {
         case "DELETE_TASK":
             return state.filter((task) => task.id !== action.payload);
         case "UPDATE_TASK":
+            return state.map((task) =>
+            task.id === action.payload.id ? action.payload : task);
+        case "CHECK_TASK":
             return state.map((task) =>
             task.id === action.payload.id ? action.payload : task);
         default:
@@ -27,13 +30,9 @@ export const TasksProvider = ({children}) => {
     useEffect(() => {
         const fetchTasks = async () => {
             try{
-                const response = await fetch(todosURL, {method: "GET"});
-                if(!response.ok){
-                    console.log ("Error al buscar datos");
-                }
+                const response = await axios.get(todosURL);
                 
-                const data = await response.json();
-                dispatch({type: "SET_TASKS", payload: data});
+                dispatch({type: "SET_TASKS", payload: response.data});
 
             }catch(error){
                 console.error("Error al traer lista: ", error)
@@ -44,30 +43,18 @@ export const TasksProvider = ({children}) => {
 
     const addTask = async (task) => {
         try{
-            const response = await fetch(todosURL,{method:"POST", headers:{"Content-Type" : "application/json",},
-            body: JSON.stringify(task),
-        });
-
-        if (!response.ok){
-            console.log("Error");
-        }
-            const data = await response.json();
+            const response = await axios.post(todosURL, task)
                 
-            dispatch({type:"ADD_TASK", payload: data});
+            dispatch({type:"ADD_TASK", payload: response.data});
         }
         catch(error){
-            console.error("Error al agregar tarea: ",error)
+            console.error("Error al agregar tarea: ", error)
         };
     };
 
     const deleteTask = async (id) => {
         try{
-            const response = await fetch(todosURL + `/${id}`,{method:"DELETE"})
-
-            if (!response.ok){
-                console.log("Error");
-            }
-            const data = await response.json();
+            await axios.delete(todosURL + `/${id}`);
             dispatch({type:"DELETE_TASK", payload: id});
         }catch(error){
             console.log("Error al eliminar tarea: ", error)
@@ -76,23 +63,28 @@ export const TasksProvider = ({children}) => {
 
     const updateTask = async(id, updatedTask) =>{
         try {
-            const response = await fetch(todosURL + `/${updatedTask.id}`,
-                updatedTask
+            const response = await axios.put(todosURL + `/${id}`,updatedTask
             );
-            if(!response.ok){
-                console.log("Error");
-            }
-            const data = await response.json();
-            dispatch({ type: "UPDATE_TASK", payload: data });
+            dispatch({ type: "UPDATE_TASK", payload: response.data });
           } catch (error) {
             console.error("Error al actualizar tarea: ", error);
           }
         };
 
+        const checkTask = async(id, checkedTask) =>{
+            try {
+                const response = await axios.patch(todosURL + `/${id}`,checkedTask
+                );
+                dispatch({ type: "CHECK_TASK", payload: response.data });
+              } catch (error) {
+                console.error("Error al marcar tarea: ", error);
+              }
+            };
+
 
     
   return (
-    <TasksContext.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
+    <TasksContext.Provider value={{ tasks, addTask, deleteTask, updateTask,checkTask }}>
       {children}
     </TasksContext.Provider>
   );

@@ -1,43 +1,61 @@
 import { useState } from "react";
-import {useTasks} from "../context/TaskContext";
+import { useTasks } from "../context/TaskContext";
+//import styles from "./Form.styles.module.css" USAR ESTIOS LUEGO
 
-const AddToDoForm = ({task = {}, onClose}) => {
+const AddToDoForm = () => {
+
     const [formData, setFormData] = useState({
-        name: task.name || "",
-        isCompleted: task.isCompleted || "false",
-        description: task.description || "",
-        creator: task.creator || ""
+        name: "",
+        isCompleted: false,
+        description: "",
+        creator: ""
     });
-    const {addTask } = useTasks();
+
+    const { addTask } = useTasks();
 
     const handleChange = (e) => {
-        const{name,value} = e.target;
-        setFormData((prev) => ({...prev, [name]: value}));
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTask(formData);
+
+        const newTask = {
+            name: formData.name,
+            isCompleted: formData.isCompleted,
+            description: formData.description,
+            creator: formData.creator,
+        };
+
+        addTask(newTask);
     }
-    onClose();
 
+    const handleReset = () => {
+        setFormData({name: "", description: "", creator: ""})
+    }
 
-return (
-    <form onSubmit={handleSubmit}>
-        <input name="name" value={formData.name}
-        onChange={handleChange}
-        placeholder="Título de tarea"/>
-
-        <input name="description" value={formData.description}
-        onChange={handleChange}
-        placeholder="Descripción"/>
-
-        <input name="creator" value={formData.creator}
-        onChange={handleChange}
-        placeholder="Creador"/>
-        <button type="submit">Guardar Tarea</button>
-    </form>
-);
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>Título:
+                <input type="text" name="name" value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Título de tarea" />
+            </label>
+            <label>Descripción: 
+                <input type="text" name="description" value={formData.description}
+                    onChange={handleChange}
+                    placeholder="Descripción" />
+            </label>
+            <label>Creador: 
+                <input type="text" name="creator" value={formData.creator}
+                    onChange={handleChange}
+                    placeholder="Creador" />
+            </label>
+            <button type="submit">Guardar Tarea</button>
+            <button type="button" onClick={handleReset}>Cancelar</button>
+        </form>
+    );
 
 };
 

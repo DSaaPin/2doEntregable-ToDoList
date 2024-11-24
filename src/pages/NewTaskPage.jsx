@@ -1,9 +1,13 @@
-import {useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import AddToDoForm from "../components/AddToDoForm";
 
 const NewTaskPage = () => {
 
     return (
-        <h2>Nueva tarea</h2>
+        <div>
+            <h2>Nueva tarea</h2>
+            <AddToDoForm />
+        </div>
     )
 
 }
