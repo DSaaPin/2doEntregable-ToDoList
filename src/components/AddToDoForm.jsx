@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MessageModal from "./MessageModal";
 import { useTasks } from "../context/TaskContext";
-//import styles from "./Form.styles.module.css" 
+import styles from "./AddForm.styles.module.css" 
 
 const AddToDoForm = () => {
 
@@ -38,42 +38,45 @@ const AddToDoForm = () => {
         setTimeout(() => {
             setOpenModal(false);
             navigate("/home");
-        },2000);
+        }, 2000);
     }
 
     const handleReset = () => {
-        setFormData({name: "", description: "", creator: ""})
+        setFormData({ name: "", isCompleted: false, description: "", creator: "" })
     }
 
     const handleCancel = () => {
         navigate("/home");
     }
 
-    return (<>
+    return (
+    <div className={`${styles.containerForm}`}>
+        <h2 className={`${styles.title}`}>Agrega una nueva tarea:</h2>
         <form onSubmit={handleSubmit}>
             <label>Título:
                 <input type="text" name="name" value={formData.name}
                     onChange={handleChange}
-                    placeholder="Título de tarea" required/>
+                    placeholder="Título de tarea" required />
             </label>
-            <label>Descripción: 
+            <label>Descripción:
                 <input type="text" name="description" value={formData.description}
                     onChange={handleChange}
                     placeholder="Descripción" />
             </label>
-            <label>Creador: 
+            <label>Creador:
                 <input type="text" name="creator" value={formData.creator}
                     onChange={handleChange}
                     placeholder="Creador" />
             </label>
-            <button type="submit">Guardar Tarea</button>
+            <div className={`${styles.buttonsContainer}`}>
+            <button type="submit">Guardar tarea</button>
             <button type="button" onClick={handleReset}>Limpiar datos</button>
             <button type="button" onClick={handleCancel}>Cancelar</button>
+            </div>
         </form>
-        {openModal && <MessageModal/>}
-        </>
+        {openModal && <MessageModal />}
+    </div>
     );
-
 };
 
 export default AddToDoForm;

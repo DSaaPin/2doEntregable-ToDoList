@@ -41,10 +41,10 @@ export const EditTaskModal = ({task , closeModal}) => {
                 <input type="text" name="creator" value={formData.creator}
                     onChange={handleChange}/>
             </label>
-            <label>Realizada?
-                <input type="checkbox" name="isCompleted" checked={formData.isCompleted} onChange={handleChange}></input>
+            <label>Completada?
+                <input type="checkbox" className={`${styles.checkbox}`} name="isCompleted" checked={formData.isCompleted} onChange={handleChange}></input>
             </label>
-            <div>
+            <div className={`${styles.buttonsContainer}`}>
                 <button type="submit">Guardar</button>
                 <button type="button" onClick={closeModal}>Cancelar</button>
             </div>

@@ -16,11 +16,14 @@ export const ToDoItem = ({task}) => {
 
 
     return (
-        <div className={`${styles.card}`}>
-            <div>{task.name}</div>
-            <div>{task.description} {task.creator} 
-                <input type="checkbox" checked={task.isCompleted} onChange={handleCheckChange}></input></div>
-            <div>
+        <div className={ task.isCompleted ? `${styles.cardCompleted}` : `${styles.card}`}>
+            <h4>{task.name}</h4>
+            <p>{task.description}</p>
+            <p>Creador: {task.creator} </p>
+            <div className={`${styles.optionsContainer}`}>
+                <label>Completada?: 
+                <input className={`${styles.checkbox}`} type="checkbox" checked={task.isCompleted} onChange={handleCheckChange}></input></label>
+            
                 <button onClick={openModal}>Editar</button>
                 <button onClick={() => deleteTask(task.id)}>🗑</button>
             </div>
