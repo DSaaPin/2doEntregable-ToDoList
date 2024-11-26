@@ -1,13 +1,6 @@
 {
   "todos": [
     {
-      "id": "1",
-      "name": "🛒Buy groceries",
-      "isCompleted": false,
-      "description": "🥛Milk,🍞Bread,🥚Eggs, and🍏Fruits",
-      "creator": "Alice"
-    },
-    {
       "id": "2",
       "name": "📊Finish project report",
       "isCompleted": false,
@@ -22,13 +15,6 @@
       "creator": "Charlie"
     },
     {
-      "id": "4",
-      "name": "🧹Clean the house",
-      "isCompleted": false,
-      "description": "🧼Vacuum, dust, and organize the living room.",
-      "creator": "Diana"
-    },
-    {
       "id": "5",
       "name": "📖Read a book",
       "isCompleted": true,
@@ -36,18 +22,25 @@
       "creator": "Ethan"
     },
     {
-      "id": "aa97",
-      "name": "desayunar",
+      "id": "4352",
+      "name": "eweedfgdg",
       "isCompleted": true,
-      "description": "tostadas",
-      "creator": "yo"
+      "description": "eee",
+      "creator": "ee"
     },
     {
-      "id": "1406",
-      "name": "Ir al super",
+      "id": "c88f",
+      "name": "asdasd",
       "isCompleted": false,
-      "description": "Comprar pan, harina, azucar",
-      "creator": "YoDeby"
+      "description": "asda",
+      "creator": "asdad"
+    },
+    {
+      "id": "dd20",
+      "name": "asdasda",
+      "isCompleted": false,
+      "description": "asdasd",
+      "creator": "asdad"
     }
   ]
 }

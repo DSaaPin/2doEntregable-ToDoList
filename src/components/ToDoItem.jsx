@@ -10,12 +10,16 @@ export const ToDoItem = ({task}) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
+    const handleCheckChange = () =>{
+        checkTask(task.id, !task.isCompleted);
+    };
+
 
     return (
         <div className={`${styles.card}`}>
             <div>{task.name}</div>
             <div>{task.description} {task.creator} 
-                <input type="checkbox" checked={task.isCompleted} onChange={() => checkTask(task.id, task.isCompleted)}></input></div>
+                <input type="checkbox" checked={task.isCompleted} onChange={handleCheckChange}></input></div>
             <div>
                 <button onClick={openModal}>Editar</button>
                 <button onClick={() => deleteTask(task.id)}>🗑</button>

@@ -1,10 +1,7 @@
-//import { useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ToDoListPage from './pages/ToDoListPage.jsx';
 import NewTaskPage from './pages/NewTaskPage.jsx';
 import HomePage from './pages/HomePage.jsx';
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
 import Header from "./components/Header.jsx"
 import './App.css'
 

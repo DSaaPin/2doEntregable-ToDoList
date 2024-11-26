@@ -7,8 +7,8 @@ export const EditTaskModal = ({task , closeModal}) => {
     const [formData, setFormData] = useState({...task});
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData((data) => ({...data, [name]: value,}));
+        const {name, value, type, checked} = e.target;
+        setFormData((data) => ({...data, [name]: type === "checkbox" ? checked : value,}));
     };
 
     const handleSubmit = (e) => {
@@ -42,7 +42,7 @@ export const EditTaskModal = ({task , closeModal}) => {
                     onChange={handleChange}/>
             </label>
             <label>Realizada?
-                <input type="checkbox" name="isCompleted" value={formData.isCompleted}></input>
+                <input type="checkbox" name="isCompleted" checked={formData.isCompleted} onChange={handleChange}></input>
             </label>
             <div>
                 <button type="submit">Guardar</button>

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import MessageModal from "./MessageModal";
 import { useTasks } from "../context/TaskContext";
-//import styles from "./Form.styles.module.css" USAR ESTIOS LUEGO
+//import styles from "./Form.styles.module.css" 
 
 const AddToDoForm = () => {
 
@@ -11,6 +13,8 @@ const AddToDoForm = () => {
         creator: ""
     });
 
+    const [openModal, setOpenModal] = useState(false)
+    const navigate = useNavigate();
     const { addTask } = useTasks();
 
     const handleChange = (e) => {
@@ -29,13 +33,19 @@ const AddToDoForm = () => {
         };
 
         addTask(newTask);
+        setOpenModal(true);
+
+        setTimeout(() => {
+            setOpenModal(false);
+            navigate("/home");
+        },3000);
     }
 
     const handleReset = () => {
         setFormData({name: "", description: "", creator: ""})
     }
 
-    return (
+    return (<>
         <form onSubmit={handleSubmit}>
             <label>Título:
                 <input type="text" name="name" value={formData.name}
@@ -55,6 +65,8 @@ const AddToDoForm = () => {
             <button type="submit">Guardar Tarea</button>
             <button type="button" onClick={handleReset}>Cancelar</button>
         </form>
+        {openModal && <MessageModal  closeModal={() => setOpenModal(false)} />}
+        </>
     );
 
 };
