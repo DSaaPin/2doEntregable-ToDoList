@@ -1,8 +1,11 @@
-# React + Vite
+Para poder ejecutar correctamente se debe abrir una nueva terminal y ejecutar los siguientes comandos en la carpeta raíz del proyecto: 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1_ npm install react-router-dom
+2_ npm install axios
+3_ json-server --watch src/db/db.json (con esto levantamos el servidor donde están alojados los datos)
+4_ npm run dev (con esto levantamos la aplicación en el navegado)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+npm install axios (ANOTAR EN README) 
+json-server --watch src/db/db.json
+npm run dev
+npm install react-router-dom
