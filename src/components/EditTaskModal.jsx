@@ -31,7 +31,7 @@ export const EditTaskModal = ({task , closeModal}) => {
             <form onSubmit={handleSubmit}>
             <label>Título:
                 <input type="text" name="name" value={formData.name}
-                    onChange={handleChange}/>
+                    onChange={handleChange} required/>
             </label>
             <label>Descripción:
                 <input type="text" name="description" value={formData.description}

@@ -38,11 +38,15 @@ const AddToDoForm = () => {
         setTimeout(() => {
             setOpenModal(false);
             navigate("/home");
-        },3000);
+        },2000);
     }
 
     const handleReset = () => {
         setFormData({name: "", description: "", creator: ""})
+    }
+
+    const handleCancel = () => {
+        navigate("/home");
     }
 
     return (<>
@@ -50,7 +54,7 @@ const AddToDoForm = () => {
             <label>Título:
                 <input type="text" name="name" value={formData.name}
                     onChange={handleChange}
-                    placeholder="Título de tarea" />
+                    placeholder="Título de tarea" required/>
             </label>
             <label>Descripción: 
                 <input type="text" name="description" value={formData.description}
@@ -63,9 +67,10 @@ const AddToDoForm = () => {
                     placeholder="Creador" />
             </label>
             <button type="submit">Guardar Tarea</button>
-            <button type="button" onClick={handleReset}>Cancelar</button>
+            <button type="button" onClick={handleReset}>Limpiar datos</button>
+            <button type="button" onClick={handleCancel}>Cancelar</button>
         </form>
-        {openModal && <MessageModal  closeModal={() => setOpenModal(false)} />}
+        {openModal && <MessageModal/>}
         </>
     );
 

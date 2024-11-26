@@ -1,6 +1,13 @@
 {
   "todos": [
     {
+      "id": "1",
+      "name": "🛒Buy groceries",
+      "isCompleted": false,
+      "description": "🥛Milk,🍞Bread,🥚Eggs, and🍏Fruits",
+      "creator": "Alice"
+    },
+    {
       "id": "2",
       "name": "📊Finish project report",
       "isCompleted": false,
@@ -15,6 +22,13 @@
       "creator": "Charlie"
     },
     {
+      "id": "4",
+      "name": "🧹Clean the house",
+      "isCompleted": false,
+      "description": "🧼Vacuum, dust, and organize the living room.",
+      "creator": "Diana"
+    },
+    {
       "id": "5",
       "name": "📖Read a book",
       "isCompleted": true,
@@ -22,25 +36,11 @@
       "creator": "Ethan"
     },
     {
-      "id": "4352",
-      "name": "eweedfgdg",
-      "isCompleted": true,
-      "description": "eee",
-      "creator": "ee"
-    },
-    {
-      "id": "c88f",
-      "name": "asdasd",
+      "id": "551b",
+      "name": "sfsdfs",
       "isCompleted": false,
-      "description": "asda",
-      "creator": "asdad"
-    },
-    {
-      "id": "dd20",
-      "name": "asdasda",
-      "isCompleted": false,
-      "description": "asdasd",
-      "creator": "asdad"
+      "description": "",
+      "creator": ""
     }
   ]
 }
