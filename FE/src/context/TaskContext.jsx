@@ -54,7 +54,7 @@ export const TasksProvider = ({ children }) => {
 
     const deleteTask = async (id) => {
         try {
-            await axios.delete(todosURL + `/${id}`);
+            await axios.delete(`${todosURL}/${id}`);
             dispatch({ type: "DELETE_TASK", payload: id });
         } catch (error) {
             console.log("Error al eliminar tarea: ", error)
