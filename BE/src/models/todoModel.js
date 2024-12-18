@@ -7,6 +7,6 @@ const todoSchema = new mongoose.Schema({
     creator: {type: String, required: false},
 });
 
-const todoModel = mongoose.model('task', todoSchema);
+const todoModel = mongoose.model('Task', todoSchema);
 
 export default todoModel;
