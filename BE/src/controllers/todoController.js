@@ -11,5 +11,51 @@ export const getAllTodos = async (req,res) => {
     }
 };
 
+export const getTodoById = async (req,res) => {
+
+    try{
+        const todo = await todoModel.findById(req.params.id);
+        res.status(200).json(todo);
+
+
+    }catch(error){
+        res.status(404).json({message: "No se encontró la tarea"});
+    }
+};
+
+export const createTodo = async (req,res) => {
+    try{
+        const newTodo = await todoModel.create(req.body);
+        res.status(201).json(newTodo);
+    } 
+    catch(error) {
+        res.status(400).json({message: "No se pudo crear la tarea"});
+    }
+};
+
+export const updateTodo = async(req, res) => {
+    try {
+        const updatedTodo = await todoModel.findByIdAndUpdate(req.params.id, req.body,{ new: true });
+        res.status(200).json(updatedTodo);
+    } 
+    catch(error) {
+        res.status(404).json({message: "No se pudo actualizar la tarea"});
+    }
+};
+
+export const deleteTodo = async(req,res)=>{
+    try {
+        const result = await todoModel.findByIdAndDelete(req.params.id);
+        if(!result){
+            res.status(404).json({message:"No se encontró la tarea"});
+            
+        }
+        else{
+        res.send(`La tarea: "${result?.name}" fue eliminada`);
+    }
+    }catch(error){
+        res.status(404).json({message:"Error al intentar borrar"});
+    }
+}
 
 
