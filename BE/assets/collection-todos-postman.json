@@ -102,14 +102,14 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                    "raw": "http://localhost:{{PORT}}/api/users/6762528f034950824dd375cd",
+                    "raw": "http://localhost:{{PORT}}/api/todos/6763accabd640b688bd4b5a5",
                     "host": [
                         "localhost"
                     ],
                     "port": "{{PORT}}",
                     "path": [
                         "api/todos",
-                        "6762528f034950824dd375cd"
+                        "6763accabd640b688bd4b5a5"
                     ]
                 }
             },
