@@ -15,14 +15,14 @@ export const EditTaskModal = ({task , closeModal}) => {
         e.preventDefault();
 
         const updatedTask = {
-            id: task.id,
+            _id: task._id,
             name: formData.name,
             isCompleted: formData.isCompleted,
             description: formData.description,
             creator: formData.creator,            
         };
 
-        updateTask(task.id, updatedTask);
+        updateTask(task._id, updatedTask);
         closeModal();
     };
 

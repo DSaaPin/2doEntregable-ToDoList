@@ -3,7 +3,6 @@ import ToDoListPage from './pages/ToDoListPage.jsx';
 import NewTaskPage from './pages/NewTaskPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import Header from "./components/Header.jsx"
-import './App.css'
 
 function App() {
 

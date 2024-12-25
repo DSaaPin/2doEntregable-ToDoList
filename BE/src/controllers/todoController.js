@@ -43,6 +43,16 @@ export const updateTodo = async(req, res) => {
     }
 };
 
+export const checkTodo = async(req, res) => {
+    try {
+        const checkedTodo = await todoModel.findByIdAndUpdate(req.params.id, req.body,{ new: true });
+        res.status(200).json(checkedTodo);
+    } 
+    catch(error) {
+        res.status(404).json({message: "No se pudo cambiar estado a la tarea"});
+    }
+};
+
 export const deleteTodo = async(req,res)=>{
     try {
         const result = await todoModel.findByIdAndDelete(req.params.id);

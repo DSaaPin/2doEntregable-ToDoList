@@ -10,13 +10,13 @@ const tasksReducer = (state, action) => {
         case "ADD_TASK":
             return [...state, action.payload];
         case "DELETE_TASK":
-            return state.filter((task) => task.id !== action.payload);
+            return state.filter((task) => task._id !== action.payload);
         case "UPDATE_TASK":
             return state.map((task) =>
-                task.id === action.payload.id ? action.payload : task);
+                task._id === action.payload._id ? action.payload : task);
         case "CHECK_TASK":
             return state.map((task) =>
-                task.id === action.payload.id ? { ...task, isCompleted: action.payload.isCompleted } : task);
+                task._id === action.payload._id ? { ...task, isCompleted: action.payload.isCompleted } : task);
         default:
             return state;
     }
@@ -25,7 +25,7 @@ const tasksReducer = (state, action) => {
 export const TasksProvider = ({ children }) => {
     const [tasks, dispatch] = useReducer(tasksReducer, []);
 
-    const todosURL = "http://localhost:3000/todos";
+    const todosURL = "http://localhost:3000/api/todos";
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -80,8 +80,6 @@ export const TasksProvider = ({ children }) => {
             console.error("Error al marcar tarea: ", error);
         }
     };
-
-
 
     return (
         <TasksContext.Provider value={{ tasks, addTask, deleteTask, updateTask, checkTask }}>

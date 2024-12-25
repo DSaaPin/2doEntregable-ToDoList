@@ -4,6 +4,7 @@ import {
     getTodoById,
     createTodo,
     updateTodo,
+    checkTodo,
     deleteTodo
 } from '../controllers/todoController.js';
 
@@ -18,5 +19,7 @@ router.post('/', createTodo);
 router.put('/:id', updateTodo);
 
 router.delete('/:id',deleteTodo)
+
+router.patch('/:id', checkTodo);
 
 export default router;

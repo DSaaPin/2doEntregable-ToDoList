@@ -9,7 +9,7 @@ const ToDoList = () => {
         <div className={`${styles.listContainer}`}>
         <h2 className={`${styles.title}`}>Lista de tareas</h2>
             {tasks.map((task) => (
-                <ToDoItem key={task.id} task={task}/>
+                <ToDoItem key={task._id} task={task}/>
             ))}
         </div>
     );
