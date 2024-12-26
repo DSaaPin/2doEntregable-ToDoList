@@ -7,11 +7,12 @@ import {
     checkTodo,
     deleteTodo
 } from '../controllers/todoController.js';
+import { authToken } from '../middlewares/authMiddleware.js';
 
 
 const router = express.Router();
 
-
+router.use(authToken)
 router.get('/', getAllTodos);
 router.get('/:id', getTodoById);
 

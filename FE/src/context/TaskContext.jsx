@@ -3,6 +3,8 @@ import axios from "axios";
 
 const TasksContext = createContext();
 
+
+
 const tasksReducer = (state, action) => {
     switch (action.type) {
         case "SET_TASKS":
@@ -25,12 +27,18 @@ const tasksReducer = (state, action) => {
 export const TasksProvider = ({ children }) => {
     const [tasks, dispatch] = useReducer(tasksReducer, []);
 
+    const config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+    };
+
     const todosURL = "http://localhost:3000/api/todos";
 
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get(todosURL);
+                const response = await axios.get(todosURL,config);
 
                 dispatch({ type: "SET_TASKS", payload: response.data });
 
@@ -43,7 +51,7 @@ export const TasksProvider = ({ children }) => {
 
     const addTask = async (task) => {
         try {
-            const response = await axios.post(todosURL, task)
+            const response = await axios.post(todosURL, task,config)
 
             dispatch({ type: "ADD_TASK", payload: response.data });
         }
@@ -54,7 +62,7 @@ export const TasksProvider = ({ children }) => {
 
     const deleteTask = async (id) => {
         try {
-            await axios.delete(`${todosURL}/${id}`);
+            await axios.delete(`${todosURL}/${id}`,config);
             dispatch({ type: "DELETE_TASK", payload: id });
         } catch (error) {
             console.log("Error al eliminar tarea: ", error)
@@ -63,7 +71,7 @@ export const TasksProvider = ({ children }) => {
 
     const updateTask = async (id, updatedTask) => {
         try {
-            const response = await axios.put(todosURL + `/${id}`, updatedTask
+            const response = await axios.put(todosURL + `/${id}`, updatedTask,config
             );
             dispatch({ type: "UPDATE_TASK", payload: response.data });
         } catch (error) {
@@ -73,7 +81,7 @@ export const TasksProvider = ({ children }) => {
 
     const checkTask = async (id, isCompleted) => {
         try {
-            const response = await axios.patch(todosURL + `/${id}`, { isCompleted }
+            const response = await axios.patch(todosURL + `/${id}`, { isCompleted },config
             );
             dispatch({ type: "CHECK_TASK", payload: response.data });
         } catch (error) {
