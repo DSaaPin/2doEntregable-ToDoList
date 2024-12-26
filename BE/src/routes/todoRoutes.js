@@ -11,6 +11,7 @@ import {
 
 const router = express.Router();
 
+
 router.get('/', getAllTodos);
 router.get('/:id', getTodoById);
 
@@ -21,5 +22,10 @@ router.put('/:id', updateTodo);
 router.delete('/:id',deleteTodo)
 
 router.patch('/:id', checkTodo);
+
+
+router.use((req, res) => {
+    res.status(404).json({ message: "Verifique la ruta brindada" });
+});
 
 export default router;
