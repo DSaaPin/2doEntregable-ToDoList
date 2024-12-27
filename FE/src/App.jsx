@@ -3,6 +3,8 @@ import ToDoListPage from './pages/ToDoListPage.jsx';
 import NewTaskPage from './pages/NewTaskPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import Header from "./components/Header.jsx"
+import RegisterPage from './pages/RegisterPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 
 function App() {
 
@@ -12,9 +14,12 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/*" element={<Navigate replace to="/home" />} />
+        <Route path="/*" element={<Navigate replace to="/login" />} />
 
-        <Route path="/home/*" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
+        <Route path="/home" element={<HomePage />} />
 
         <Route path="/todolist" element={<ToDoListPage />} />
 

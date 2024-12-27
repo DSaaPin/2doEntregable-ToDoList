@@ -61,9 +61,20 @@ Utilizamos React, Vite, Node.js, Express y Mongoose, conectando a una base de da
     
 **Una vez iniciados ambos servidores ya se pueden hacer pruebas directamente desde la web**
 
+**Registro y Logueo de usuarios**
+Se implementa un sistema de autenticación de usuarios mediante JWT
+Dejamos un usuario precargado con el cual se puede probar logueos:
+
+{
+  "email": "lala@gmail.com",
+  "password":"1411"
+}
+
 
 **Pruebas con POSTMAN**
-En caso de querer probar directamente el BE se puede utilizar Postman. Dejamos una colección precargada en la carpeta BE/assets, la cual se puede importar en POSTMAN y probar los distintos Endpoints: 
+En caso de querer probar directamente el BE se puede utilizar Postman. Dejamos una colección precargada en la carpeta BE/assets, la cual se puede importar en POSTMAN y probar los distintos Endpoints.
+
+**Aclaración:** Dado que en la última versión se agrega autenticación con token, para poder probar los CRUD de tareas se deberá especificar el header key: "Authorization" value: Bearer <token>
 
 [Descargar collection-todos-postman.json](./BE/assets/collection-todos-postman.json)
 

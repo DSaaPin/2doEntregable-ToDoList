@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/database.js';
 import todoRoutes from './routes/todoRoutes.js';
+import authRoutes from './routes/authRoutes.js'
 import cors from 'cors';
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   }));
 
+app.use('/api/auth', authRoutes);
 app.use('/api/todos', todoRoutes);
 
 app.use((err, req, res, next) => {

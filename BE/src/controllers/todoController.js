@@ -45,7 +45,6 @@ export const createTodo = async (req, res) => {
 
     try {
         const newTodo = await todoModel.create(req.body);
-        console.log("Tarea nueva " , newTodo)
         res.status(201).json(newTodo);
     }
     catch (error) {
